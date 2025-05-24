@@ -1,5 +1,5 @@
 
-# Debug Report: Fixing `transactionIndex` Mismatch on Sei EVM: One-Pager
+# Debug Report: Fixing `transactionIndex` Mismatch on Sei EVM
 
 ## Issue Overview
 
