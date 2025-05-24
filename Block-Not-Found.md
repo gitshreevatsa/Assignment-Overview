@@ -118,11 +118,19 @@ This helps ensure your internal systems or user tools continue to work without b
 
 > “The block you’re trying to query is no longer available via QuickNode as it has likely pruned historical data below its base height. I validated this by querying several nearby blocks and confirmed that only blocks from base height + 2 are available(at the time of testing and quicknode prunes blocks that are of an year old). You can either use another RPC provider like Alchemy, which retains older blocks, or consider running an archival node if historical access is a requirement for your use case.”
 
-Additionally, I would reach out to the QuickNode team to highlight two things:
+## Suggestion to QuickNode
 
-- Their RPC advertises a base height, but blocks at or above this height can still return pruning errors the actual minimum available height should be clarified or exposed accurately.
+While investigating this issue, I also noticed that QuickNode does not publicly expose or document any EVM-compatible request headers (such as x-qn-height) that allow developers to specify or probe block heights — unlike their Cosmos APIs, which support the x-cosmos-block-height header.
 
-- When a block is unavailable, the error message returns height like 826401374464, which doesn't map to any real EVM or Cosmos block height. This could confuse developers and mislead automated tooling. Suggesting they replace this with a clearer error (e.g., "block height pruned" or "block unavailable due to retention policy") would improve developer experience.
+To improve developer experience and reduce ambiguity around pruning-related errors, I suggest the following improvements, which I would also consider raising as a GitHub issue:
+
+1. Expose the actual minimum available block height via a dedicated endpoint or embed it in the RPC error response.
+
+2. Document and support a height-specific header (e.g., x-evm-block-height) for EVM chains, allowing clients to explicitly target recent retrievable blocks.
+
+3. Clarify error responses — avoid returning misleading internal values such as 826401374464, which do not correspond to real block numbers and may confuse developers or break indexing systems.
+
+These changes would make QuickNode’s Sei RPC behavior more predictable, easier to integrate with, and aligned with expectations from other infrastructure providers.
 
 ## Closing Thoughts
 
