@@ -87,7 +87,7 @@ QuickNode appears to **prune older EVM blocks** on the Sei chain and **only reta
 In this case:
 
 * The actual error blockNumber (`0x4AAEA6F` = `78209999`) is **below** the retained base height.
-* The earliest available block is `base height + 2`, confirmed via both block number and hash.
+* The earliest available block is `base height + 2`, confirmed via both block number and hash. This was at the time of investigation and may change when tested again as time progresses, but the pattern of pruning is clear.
 
 ## User Guidance
 
@@ -116,7 +116,13 @@ This helps ensure your internal systems or user tools continue to work without b
 
 ## How I'd Respond to the Asking Team
 
-> “The block you’re trying to query is no longer available via QuickNode as it has likely pruned historical data below its base height. I validated this by querying several nearby blocks and confirmed that only blocks from base height + 2 are available. You can either use another RPC provider like Alchemy, which retains older blocks, or consider running an archival node if historical access is a requirement for your use case.”
+> “The block you’re trying to query is no longer available via QuickNode as it has likely pruned historical data below its base height. I validated this by querying several nearby blocks and confirmed that only blocks from base height + 2 are available(at the time of testing and quicknode prunes blocks that are of an year old). You can either use another RPC provider like Alchemy, which retains older blocks, or consider running an archival node if historical access is a requirement for your use case.”
+
+Additionally, I would reach out to the QuickNode team to highlight two things:
+
+- Their RPC advertises a base height, but blocks at or above this height can still return pruning errors the actual minimum available height should be clarified or exposed accurately.
+
+- When a block is unavailable, the error message returns height like 826401374464, which doesn't map to any real EVM or Cosmos block height. This could confuse developers and mislead automated tooling. Suggesting they replace this with a clearer error (e.g., "block height pruned" or "block unavailable due to retention policy") would improve developer experience.
 
 ## Closing Thoughts
 
