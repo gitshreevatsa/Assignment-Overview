@@ -226,6 +226,17 @@ seid debug addr <native_asset_address>
 - [Sei Testnet Faucet](https://www.docs.sei.io/learn/faucet)
 
 ---
+## Thinking Process
+
+This guide focuses on [PR #2138](https://github.com/sei-protocol/sei-chain/pull/2138), which extends the Solo precompile with `claimSpecific()` to allow granular migration of CW20 and CW721 assets. Since the feature had not yet been merged or deployed to a live network, and running a custom Sei node locally requires high system resources, I approached the task by analyzing the PR code and CLI tool usage examples.
+
+The goal was to create a practical guide that walks through the expected developer workflow — from Cosmos asset selection to EVM-based claim — even if the function could not be tested directly. I aimed to cover not just code interaction but also real-world use cases like partial onboarding and selective migration.
+
+## Limitations & Context
+
+This documentation is based on features introduced in [PR #2138](https://github.com/sei-protocol/sei-chain/pull/2138), which were still open pull requests at the time of writing. These precompiles are not deployed on Sei devnet or mainnet, and as precompiles, they require node-level integration rather than smart contract deployment.
+
+Due to the lack of public availability and the high hardware requirements for compiling and running a custom Sei node locally, the tutorials have not been executed end-to-end. Instead, they are based on code-level understanding, CLI reference, and expected usage patterns. The guides are written to be fully testable once the features are live.
 
   
 ## AI Assistance Disclosure

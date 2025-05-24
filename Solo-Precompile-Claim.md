@@ -171,5 +171,18 @@ seid debug addr <native_asset_address>
 
 ---
 
+## Thinking Process
+
+This tutorial is based on [PR #2129](https://github.com/sei-protocol/sei-chain/pull/2129), which introduces the `claim()` method on the Solo precompile (`0x000...100C`). Since this functionality was not yet merged into the main branch or deployed to public networks (including devnet) at the time of writing, I could not test it in a live environment.
+
+Given that precompiles are hardcoded into the node binary and not deployable as regular smart contracts, I studied the implementation in the PR and related CLI commands to infer expected behavior. I structured the tutorial to provide a developer-friendly, ready-to-test flow, including both CLI payload generation and contract interaction using Ethers.js. It follows Sei’s documentation style and the 30-3-30 approach to cater to skimmers, scanners, and deep readers alike.
+
+## Limitations & Context
+
+This documentation is based on features introduced in [PR #2129](https://github.com/sei-protocol/sei-chain/pull/2129), which were still open pull requests at the time of writing. These precompiles are not deployed on Sei devnet or mainnet, and as precompiles, they require node-level integration rather than smart contract deployment.
+
+Due to the lack of public availability and the high hardware requirements for compiling and running a custom Sei node locally, the tutorials have not been executed end-to-end. Instead, they are based on code-level understanding, CLI reference, and expected usage patterns. The guides are written to be fully testable once the features are live.
+
+
 ## AI Assistance Disclosure
 I used AI to assist me in drafting the docs in a more structured way after putting in my docs data of the PR. It helped me generate the reference links and helped me fetch the seid command for generating the evm address from the native asset address. I used ChatGPT 4 Turbo to help draft the readme and structure the report of my understanding of solo precompile and its related code snippets.
