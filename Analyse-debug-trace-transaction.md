@@ -35,7 +35,7 @@ This prevents the tracing logic from running on transactions that have no execut
 
 ## Reference PR
 
-This hypothesis is confirmed by the actual fix implemented in the codebase, as seen in [this diff](https://github.com/sei-protocol/sei-chain/pull/XXXX) (replace with actual PR if available).  
+This hypothesis is confirmed by the actual fix implemented in the codebase, as seen in [this diff](https://github.com/sei-protocol/sei-chain/pull/2139/files#diff-63985dcfc79ae694e2352e01cc29ac0708cfa31073e932e9c70227ec2d31d0fb).  
 The patch introduces a helper function:
 
 ```go
